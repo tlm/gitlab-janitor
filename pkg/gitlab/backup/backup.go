@@ -2,6 +2,8 @@ package backup
 
 import (
 	"time"
+
+	"github.com/hashicorp/go-version"
 )
 
 type Backup struct {

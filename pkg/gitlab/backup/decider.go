@@ -18,6 +18,22 @@ func WithKeepAfterDuration(duration time.Duration) Decider {
 	return WithKeepAfterTime(time.Now().Add(-duration))
 }
 
+func WithAggregateAgree(deciders ...Decider) Decider {
+	return DeciderFn(func(b *Backup) bool {
+		lastDecision := true
+		for i, d := range deciders {
+			decision := d.Keep(b)
+			if i == 0 {
+				lastDecision = decision
+			}
+			if decision != lastDecision {
+				return true
+			}
+		}
+		return lastDecision
+	})
+}
+
 func WithKeepAfterTime(after time.Time) Decider {
 	return DeciderFn(func(b *Backup) bool {
 		return b.Time.After(after)
