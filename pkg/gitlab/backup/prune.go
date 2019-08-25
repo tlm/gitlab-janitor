@@ -3,6 +3,7 @@ package backup
 import (
 	"context"
 	"fmt"
+	"io"
 	"sort"
 	"strconv"
 	"strings"
@@ -22,6 +23,10 @@ func CreatePruneList(bucket *blob.Bucket, d Decider) ([]string, error) {
 		obj     *blob.ListObject
 	)
 	for obj, err = it.Next(ctx); obj != nil && err == nil; obj, err = it.Next(ctx) {
+		if obj.IsDir {
+			continue
+		}
+
 		parts := strings.Split(obj.Key, "_")
 		if len(parts) != 7 {
 			continue
@@ -40,6 +45,10 @@ func CreatePruneList(bucket *blob.Bucket, d Decider) ([]string, error) {
 			Version: ver,
 		})
 	}
+	if err != nil && err != io.EOF {
+		return nil, fmt.Errorf("getting backup list: %v", err)
+	}
+
 	rval := []string{}
 	sort.Sort(backups)
 	for _, b := range backups {
@@ -49,4 +58,14 @@ func CreatePruneList(bucket *blob.Bucket, d Decider) ([]string, error) {
 	}
 
 	return rval, nil
+}
+
+func DeletePruneList(bucket *blob.Bucket, pruneList []string) error {
+	ctx := context.Background()
+	for _, b := range pruneList {
+		if err := bucket.Delete(ctx, b); err != nil {
+			return fmt.Errorf("removing backup %s: %v", b, err)
+		}
+	}
+	return nil
 }
