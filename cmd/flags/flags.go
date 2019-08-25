@@ -4,7 +4,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/tlmiller/janitor/pkg/config"
+	"github.com/tlmiller/gitlab-janitor/pkg/config"
 )
 
 const (

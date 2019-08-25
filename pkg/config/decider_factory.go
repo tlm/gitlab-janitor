@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/tlmiller/janitor/pkg/gitlab/backup"
+	"github.com/tlmiller/gitlab-janitor/pkg/gitlab/backup"
 )
 
 type DeciderMapper func(conf interface{}) (backup.Decider, error)

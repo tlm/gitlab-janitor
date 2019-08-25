@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/tlmiller/janitor/pkg/gitlab/backup"
+	"github.com/tlmiller/gitlab-janitor/pkg/gitlab/backup"
 )
 
 type DeciderAggregateAgreeConfig struct {

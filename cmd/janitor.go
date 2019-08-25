@@ -3,8 +3,8 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/tlmiller/janitor/cmd/flags"
-	"github.com/tlmiller/janitor/cmd/run"
+	"github.com/tlmiller/gitlab-janitor/cmd/flags"
+	"github.com/tlmiller/gitlab-janitor/cmd/run"
 )
 
 func New() (command *cobra.Command) {

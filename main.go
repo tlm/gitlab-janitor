@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/tlmiller/janitor/cmd"
+	"github.com/tlmiller/gitlab-janitor/cmd"
 )
 
 func main() {

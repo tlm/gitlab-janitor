@@ -6,9 +6,9 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/tlmiller/janitor/cmd/flags"
-	"github.com/tlmiller/janitor/pkg/config"
-	"github.com/tlmiller/janitor/pkg/gitlab/backup"
+	"github.com/tlmiller/gitlab-janitor/cmd/flags"
+	"github.com/tlmiller/gitlab-janitor/pkg/config"
+	"github.com/tlmiller/gitlab-janitor/pkg/gitlab/backup"
 )
 
 func NewCmdRun() *cobra.Command {

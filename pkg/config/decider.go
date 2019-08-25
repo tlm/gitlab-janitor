@@ -6,7 +6,7 @@ import (
 
 	"github.com/mitchellh/mapstructure"
 
-	"github.com/tlmiller/janitor/pkg/gitlab/backup"
+	"github.com/tlmiller/gitlab-janitor/pkg/gitlab/backup"
 )
 
 type Decider struct {

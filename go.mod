@@ -1,4 +1,4 @@
-module github.com/tlmiller/janitor
+module github.com/tlmiller/gitlab-janitor
 
 go 1.12
 
